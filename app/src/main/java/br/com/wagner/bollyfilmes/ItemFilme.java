@@ -24,7 +24,6 @@ public class ItemFilme {
     }
 
     public String getId() {
-
         return id;
     }
 
