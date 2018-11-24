@@ -38,7 +38,7 @@ public class FilmesAdapter extends ArrayAdapter<ItemFilme> {
         RatingBar avaliacao = itemView.findViewById(R.id.item_avaliacao);
         avaliacao.setRating(filme.getAvaliacao());
 
-
-        return super.getView(position, convertView, parent);
+        return itemView;
+        //return super.getView(position, convertView, parent);
     }
 }
