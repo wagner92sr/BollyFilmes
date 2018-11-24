@@ -2,6 +2,7 @@ package br.com.wagner.bollyfilmes;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -28,5 +29,11 @@ public class MainActivity extends AppCompatActivity {
 
         list.setAdapter(adapter );
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return true;
     }
 }
