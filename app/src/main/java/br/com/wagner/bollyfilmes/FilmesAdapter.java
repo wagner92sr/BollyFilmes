@@ -12,6 +12,10 @@ import java.util.ArrayList;
 
 public class FilmesAdapter extends ArrayAdapter<ItemFilme> {
 
+    private static final int VIEW_TYPE_DESTAQUE = 0;
+
+    private static final int VIEW_TYPE_ITEM = 1;
+
     public FilmesAdapter(Context context, ArrayList<ItemFilme> filmes){
         super(context,0,filmes);
     }
@@ -19,26 +23,54 @@ public class FilmesAdapter extends ArrayAdapter<ItemFilme> {
     @Override
     public View getView(int position, View convertView,  ViewGroup parent) {
 
+        int viewType = getItemViewType(position);
+        ItemFilme filme = getItem(position);
         View itemView = convertView;
-        if(itemView == null){
-            itemView = LayoutInflater.from(getContext()).inflate(R.layout.item_filme, parent, false);
+
+        switch (viewType){
+            case VIEW_TYPE_DESTAQUE: {
+
+                itemView = LayoutInflater.from(getContext()).inflate(R.layout.item_filme_destaque, parent, false);
+
+                TextView descricao = itemView.findViewById(R.id.item_desc);
+                descricao.setText(filme.getDescricao());
+
+                RatingBar avaliacao = itemView.findViewById(R.id.item_avaliacao);
+                avaliacao.setRating(filme.getAvaliacao());
+                break;
+
+            }
+            case VIEW_TYPE_ITEM: {
+
+                itemView = LayoutInflater.from(getContext()).inflate(R.layout.item_filme, parent, false);
+
+                TextView titulo = itemView.findViewById(R.id.item_titulo);
+                titulo.setText(filme.getTitulo());
+
+                TextView descricao = itemView.findViewById(R.id.item_desc);
+                descricao.setText(filme.getDescricao());
+
+                TextView dataLancamento = itemView.findViewById(R.id.item_data);
+                dataLancamento.setText(filme.getDataLancamento());
+
+                RatingBar avaliacao = itemView.findViewById(R.id.item_avaliacao);
+                avaliacao.setRating(filme.getAvaliacao());
+                break;
+
+            }
         }
 
-        ItemFilme filme = getItem(position);
-
-        TextView titulo = itemView.findViewById(R.id.item_titulo);
-        titulo.setText(filme.getTitulo());
-
-        TextView descricao = itemView.findViewById(R.id.item_desc);
-        descricao.setText(filme.getDescricao());
-
-        TextView dataLancamento = itemView.findViewById(R.id.item_data);
-        dataLancamento.setText(filme.getDataLancamento());
-
-        RatingBar avaliacao = itemView.findViewById(R.id.item_avaliacao);
-        avaliacao.setRating(filme.getAvaliacao());
-
         return itemView;
-        //return super.getView(position, convertView, parent);
+
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return (position == 0 ? VIEW_TYPE_DESTAQUE: VIEW_TYPE_ITEM);
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        return 2;
     }
 }
