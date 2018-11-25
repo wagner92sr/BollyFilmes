@@ -29,7 +29,7 @@ public class FilmesAdapter extends ArrayAdapter<ItemFilme> {
         TextView titulo = itemView.findViewById(R.id.item_titulo);
         titulo.setText(filme.getTitulo());
 
-        TextView descricao = itemView.findViewById(R.id.item_descricao);
+        TextView descricao = itemView.findViewById(R.id.item_desc);
         descricao.setText(filme.getDescricao());
 
         TextView dataLancamento = itemView.findViewById(R.id.item_data);

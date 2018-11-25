@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp">
 
-    <android.support.v7.widget.AppCompatImageView
+    <ImageView
         android:id="@+id/item_poster"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/ic_launcher"/>
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:scaleType="centerInside"
+        android:src="@drawable/poster_etapa7"/>
 
     <LinearLayout
         android:layout_width="0dp"
@@ -22,37 +24,38 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Título"
+            android:text="Titulo"
             android:textColor="@android:color/black"
-            android:textSize="15sp"
-            android:textStyle="bold"/>
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/item_descricao"
-            android:layout_width="match_parent"
+            android:id="@+id/item_desc"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:maxLength="50"
             android:text="Descrição"
-            android:textColor="@android:color/black"/>
+            android:textColor="@android:color/black"
+            android:textAppearance="?android:textAppearanceMedium"/>
 
         <TextView
             android:id="@+id/item_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="20/11/2018"
-            android:textSize="12sp"/>
+            android:text="20/08/2016"
+            android:textAppearance="?android:textAppearanceSmall" />
 
         <RatingBar
+            style="@style/Widget.AppCompat.RatingBar.Small"
             android:id="@+id/item_avaliacao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_marginTop="5dp"
             android:numStars="5"
-            android:rating="3"/>
-
+            android:rating="3" />
     </LinearLayout>
 
 </LinearLayout>
