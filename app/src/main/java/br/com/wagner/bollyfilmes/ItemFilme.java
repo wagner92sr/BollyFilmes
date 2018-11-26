@@ -2,7 +2,9 @@ package br.com.wagner.bollyfilmes;
 
 import android.net.Uri;
 
-public class ItemFilme {
+import java.io.Serializable;
+
+public class ItemFilme implements Serializable {
 
     private String id;
 

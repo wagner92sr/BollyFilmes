@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Bolly Filmes</string>
+    <string name="title_activity_filme_detalhe">FilmeDetalheActivity</string>
 </resources>

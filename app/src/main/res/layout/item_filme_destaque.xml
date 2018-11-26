@@ -11,8 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="7"
-        android:scaleType="centerInside"
-        android:src="@drawable/poster_etapa7" />
+        android:src="@drawable/poster_etapa7"
+        android:scaleType="centerInside" />
 
     <TextView
         android:id="@+id/item_desc"
@@ -22,18 +22,18 @@
         android:text="Bengal Tiger is an action-oriented film, where Mithun Chakraborty plays the role of Inspector Prashant Verma, who is always opposing the evil deeds of Shakti Kapoor's Rukavat Singh."
         android:textColor="@android:color/white"
         android:gravity="center"
-        android:textAppearance="@android:style/TextAppearance.Small"
+        android:textAppearance="?android:textAppearanceSmall"
         android:padding="5dp"/>
-    
+
     <RatingBar
         android:id="@+id/item_avaliacao"
+        style="@android:style/Widget.Holo.RatingBar.Indicator"
         android:layout_width="wrap_content"
-        style="@android:style/Widget.Holo.RatingBar"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_gravity="center"
         android:layout_marginBottom="5dp"
         android:numStars="5"
-        android:rating="3"/>
+        android:rating="3" />
 
 </LinearLayout>
