@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import static java.lang.Boolean.FALSE;
@@ -32,7 +34,7 @@ public class FilmesAdapter extends ArrayAdapter<ItemFilme> {
         RatingBar avaliacao;
         ImageView poster;
 
-        ItemFilmeHolder(View view){
+        public ItemFilmeHolder(View view){
             titulo = view.findViewById(R.id.item_titulo);
             descricao = view.findViewById(R.id.item_desc);
             dataLancamento = view.findViewById(R.id.item_data);
@@ -59,6 +61,7 @@ public class FilmesAdapter extends ArrayAdapter<ItemFilme> {
 
                 RatingBar avaliacao = itemView.findViewById(R.id.item_avaliacao);
                 avaliacao.setRating(filme.getAvaliacao());
+
                 break;
 
             }
@@ -91,7 +94,8 @@ public class FilmesAdapter extends ArrayAdapter<ItemFilme> {
 
     @Override
     public int getItemViewType(int position) {
-        return (position == 0 ? VIEW_TYPE_DESTAQUE: VIEW_TYPE_ITEM);
+        //return (position == 0 ? VIEW_TYPE_DESTAQUE: VIEW_TYPE_ITEM);
+        return (position == 0 && useFilmeDestaque ? VIEW_TYPE_DESTAQUE : VIEW_TYPE_ITEM);
     }
 
     @Override
