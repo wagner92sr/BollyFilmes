@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -166,6 +167,7 @@ public class MainFragment extends Fragment {
 
             }catch (IOException e){
                 e.printStackTrace();
+                Log.e("Erro", String.valueOf(e));
             }finally {
                 if(urlConnection != null){
                     urlConnection.disconnect();
