@@ -63,7 +63,11 @@ public class FilmesAdapter extends ArrayAdapter<ItemFilme> {
                 avaliacao.setRating(filme.getAvaliacao());
 
                 ImageView capa = (ImageView) itemView.findViewById(R.id.item_capa);
-                new DownloadImageTask(capa).execute(filme.getCapaPath());
+                Picasso.get()
+                        .load(filme.getCapaPath())
+                        .placeholder(R.drawable.capa)
+                        .into(capa);
+               // new DownloadImageTask(capa).execute(filme.getCapaPath());
 
                 break;
 
@@ -86,7 +90,12 @@ public class FilmesAdapter extends ArrayAdapter<ItemFilme> {
                 holder.dataLancamento.setText(filme.getDataLancamento());
                 holder.avaliacao.setRating(filme.getAvaliacao());
 
-                new DownloadImageTask(holder.poster).execute(filme.getPosterPath());
+                Picasso.get()
+                        .load(filme.getCapaPath())
+                        .placeholder(R.drawable.capa)
+                        .into(holder.poster);
+
+                //new DownloadImageTask(holder.poster).execute(filme.getPosterPath());
 
                 break;
 

@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 public class FilmeDetalheFragment extends Fragment {
 
     private ItemFilme itemFilme;
@@ -46,11 +48,19 @@ public class FilmeDetalheFragment extends Fragment {
         avaliacao.setRating(itemFilme.getAvaliacao());
 
         ImageView capa = view.findViewById(R.id.item_capa);
-        new DownloadImageTask(capa).execute(itemFilme.getCapaPath());
+        Picasso.get()
+                .load(itemFilme.getCapaPath())
+                .placeholder(R.drawable.capa)
+                .into(capa);
+        //new DownloadImageTask(capa).execute(itemFilme.getCapaPath());
 
         if (view.findViewById(R.id.item_poster) != null) {
             ImageView poster = view.findViewById(R.id.item_poster);
-            new DownloadImageTask(poster).execute(itemFilme.getPosterPath());
+            Picasso.get()
+                    .load(itemFilme.getPosterPath())
+                    .placeholder(R.drawable.poster)
+                    .into(poster);
+            //new DownloadImageTask(poster).execute(itemFilme.getPosterPath());
         }
 
         return view;
