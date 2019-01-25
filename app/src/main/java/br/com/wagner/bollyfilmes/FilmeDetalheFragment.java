@@ -46,12 +46,12 @@ public class FilmeDetalheFragment extends Fragment {
 
         RatingBar avaliacao = view.findViewById(R.id.item_avaliacao);
         avaliacao.setRating(itemFilme.getAvaliacao());
-
+/*
         ImageView capa = view.findViewById(R.id.item_capa);
         Picasso.get()
                 .load(itemFilme.getCapaPath())
                 .placeholder(R.drawable.capa)
-                .into(capa);
+                .into(capa); */
         //new DownloadImageTask(capa).execute(itemFilme.getCapaPath());
 
         if (view.findViewById(R.id.item_poster) != null) {

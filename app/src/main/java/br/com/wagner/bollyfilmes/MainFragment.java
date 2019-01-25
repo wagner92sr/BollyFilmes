@@ -111,8 +111,13 @@ public class MainFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_atualizar:
-                Toast.makeText(getContext(), "Atualizando a lista de filmes....", Toast.LENGTH_LONG).show();
+            case R.id.menu_popularidade:
+                new FilmesAsyncTask().execute();
+                Toast.makeText(getContext(), "Ordenando por Popularidade....", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.menu_recentes:
+                new FilmesAsyncTask().execute();
+                Toast.makeText(getContext(), "Ordenando por Recentes....", Toast.LENGTH_LONG).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

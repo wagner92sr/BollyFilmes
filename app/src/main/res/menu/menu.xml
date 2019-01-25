@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/menu_atualizar"
-        android:title="Atualizar"
-        app:showAsAction="never"
+    <item
+        android:id="@+id/menu_recentes"
         android:orderInCategory="100"
-    />
-
+        android:title="Recentes"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_popularidade"
+        android:title="Populares" />
 
 
 </menu>
