@@ -7,15 +7,16 @@
         android:id="@+id/item_capa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:adjustViewBounds="true"
-        android:scaleType="centerInside"
+        android:scaleType="centerCrop"
         android:src="@drawable/capa" />
 
     <TextView
         android:id="@+id/item_titulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/item_poster"
+        android:layout_alignTop="@id/item_capa"
         android:background="#D8000000"
         android:gravity="center"
         android:padding="5dp"
@@ -27,8 +28,9 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/item_capa"
+        android:layout_centerHorizontal="true"
         android:background="#D8000000"
-        android:layout_alignBottom="@id/item_poster"
         android:padding="5dp">
 
         <RatingBar
@@ -37,9 +39,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="5dp"
             android:numStars="5"
-            android:rating="3"/>
+            android:rating="3" />
+
     </FrameLayout>
 
 </RelativeLayout>
