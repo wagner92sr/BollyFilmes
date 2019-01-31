@@ -66,6 +66,8 @@ public class FilmesAdapter extends ArrayAdapter<ItemFilme> {
                 Picasso.get()
                         .load(filme.getCapaPath())
                         .placeholder(R.drawable.capa)
+                        .resize(300,300)
+                        .centerInside()
                         .into(capa);
                // new DownloadImageTask(capa).execute(filme.getCapaPath());
 
@@ -93,6 +95,8 @@ public class FilmesAdapter extends ArrayAdapter<ItemFilme> {
                 Picasso.get()
                         .load(filme.getCapaPath())
                         .placeholder(R.drawable.capa)
+                        .resize(300,300)
+                        .centerInside()
                         .into(holder.poster);
 
                 //new DownloadImageTask(holder.poster).execute(filme.getPosterPath());

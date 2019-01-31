@@ -110,14 +110,19 @@ public class MainFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        FilmesAsyncTask asyncTask = new FilmesAsyncTask();
+
         switch (item.getItemId()) {
             case R.id.menu_popularidade:
-                new FilmesAsyncTask().execute();
+                asyncTask.setOrderBy("popular?");
                 Toast.makeText(getContext(), "Ordenando por Popularidade....", Toast.LENGTH_LONG).show();
+                asyncTask.execute();
                 return true;
             case R.id.menu_recentes:
-                new FilmesAsyncTask().execute();
-                Toast.makeText(getContext(), "Ordenando por Recentes....", Toast.LENGTH_LONG).show();
+                asyncTask.setOrderBy("top_rated?");
+                Toast.makeText(getContext(), "Ordenando por Melhores avaliações....", Toast.LENGTH_LONG).show();
+                asyncTask.execute();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -134,13 +139,19 @@ public class MainFragment extends Fragment {
 
     public class FilmesAsyncTask extends AsyncTask<Void, Void, List<ItemFilme>> {
 
+        private String orderBy = "popular?";
+
+        public void setOrderBy(String order){
+            this.orderBy = order;
+        }
+
         @Override
         protected List<ItemFilme> doInBackground(Void... voids) {
             HttpURLConnection urlConnection = null;
             BufferedReader reader = null;
 
             try{
-                String urlBase = "https://api.themoviedb.org/3/movie/popular?";
+                String urlBase = "https://api.themoviedb.org/3/movie/" + orderBy;
                 String apiKey = "api_key";
                 String language = "language";
 
