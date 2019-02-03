@@ -1,5 +1,8 @@
 package br.com.wagner.bollyfilmes;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -26,23 +30,19 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.wagner.bollyfilmes.BuildConfig;
-import br.com.wagner.bollyfilmes.ItemFilme;
-import br.com.wagner.bollyfilmes.JsonUtil;
-import br.com.wagner.bollyfilmes.R;
-import br.com.wagner.bollyfilmes.FilmesAdapter;
-
 public class MainFragment extends Fragment {
 
-    private int posicaoItem = ListView.INVALID_POSITION;
+    private int posicaoItem = GridView.INVALID_POSITION;
 
     private static final String KEY_POSITION = "SELECIONADO";
 
-    private ListView list;
+    private GridView grid; //ListView grid
 
     private FilmesAdapter adapter;
 
     private boolean useFilmeDestaque = false;
+
+    private boolean isConected = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,16 +56,16 @@ public class MainFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
-        list = view.findViewById(R.id.list_filmes);
+        grid = view.findViewById(R.id.grid_filmes);//list_filmes
 
         final ArrayList<ItemFilme> arrayList = new ArrayList<>();
 
         adapter = new FilmesAdapter(getContext(), arrayList);
         adapter.setUseFilmeDestaque(useFilmeDestaque);
 
-        list.setAdapter(adapter);
+        grid.setAdapter(adapter);
 
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
@@ -81,14 +81,16 @@ public class MainFragment extends Fragment {
             posicaoItem = savedInstanceState.getInt(KEY_POSITION);
         }
 
-        new FilmesAsyncTask().execute();
+        if (verificaConexao(getContext())) {
+            new FilmesAsyncTask().execute();
+        }
 
         return view;
     }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        if (posicaoItem != ListView.INVALID_POSITION) {
+        if (posicaoItem != GridView.INVALID_POSITION) {
             outState.putInt(KEY_POSITION, posicaoItem);
         }
         super.onSaveInstanceState(outState);
@@ -98,8 +100,8 @@ public class MainFragment extends Fragment {
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
 
-        if (posicaoItem != ListView.INVALID_POSITION && list != null) {
-            list.smoothScrollToPosition(posicaoItem);
+        if (posicaoItem != GridView.INVALID_POSITION && grid != null) {
+            grid.smoothScrollToPosition(posicaoItem);
         }
     }
 
@@ -115,14 +117,19 @@ public class MainFragment extends Fragment {
 
         switch (item.getItemId()) {
             case R.id.menu_popularidade:
-                asyncTask.setOrderBy("popular?");
-                Toast.makeText(getContext(), "Ordenando por Popularidade....", Toast.LENGTH_LONG).show();
-                asyncTask.execute();
+                if (verificaConexao(getContext())) {
+                    asyncTask.setOrderBy("popular?");
+                    Toast.makeText(getContext(), "Ordenando por Popularidade....", Toast.LENGTH_LONG).show();
+                    asyncTask.execute();
+                }
                 return true;
+
             case R.id.menu_recentes:
-                asyncTask.setOrderBy("top_rated?");
-                Toast.makeText(getContext(), "Ordenando por Melhores avaliações....", Toast.LENGTH_LONG).show();
-                asyncTask.execute();
+                if (verificaConexao(getContext())) {
+                    asyncTask.setOrderBy("top_rated?");
+                    Toast.makeText(getContext(), "Ordenando por Melhores avaliações....", Toast.LENGTH_LONG).show();
+                    asyncTask.execute();
+                }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -213,6 +220,17 @@ public class MainFragment extends Fragment {
         void onItemSelected(ItemFilme itemFilme);
     }
 
+    public boolean verificaConexao(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        if (cm != null) {
+            NetworkInfo ni = cm.getActiveNetworkInfo();
+
+            return ni != null && ni.isConnected();
+        }
+
+        return false;
+    }
 
 
 }

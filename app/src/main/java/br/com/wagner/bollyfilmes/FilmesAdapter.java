@@ -51,7 +51,7 @@ public class FilmesAdapter extends ArrayAdapter<ItemFilme> {
         ItemFilme filme = getItem(position);
         View itemView = convertView;
 
-        switch (viewType){
+       /* switch (viewType){
             case VIEW_TYPE_DESTAQUE: {
 
                 itemView = LayoutInflater.from(getContext()).inflate(R.layout.item_filme_destaque, parent, false);
@@ -74,7 +74,7 @@ public class FilmesAdapter extends ArrayAdapter<ItemFilme> {
                 break;
 
             }
-            case VIEW_TYPE_ITEM: {
+            case VIEW_TYPE_ITEM: { */
 
                 itemView = LayoutInflater.from(getContext()).inflate(R.layout.item_filme, parent, false);
 
@@ -87,24 +87,24 @@ public class FilmesAdapter extends ArrayAdapter<ItemFilme> {
                     holder = (ItemFilmeHolder) itemView.getTag();
                 }
 
-                holder.titulo.setText(filme.getTitulo());
-                holder.descricao.setText(filme.getDescricao());
-                holder.dataLancamento.setText(filme.getDataLancamento());
-                holder.avaliacao.setRating(filme.getAvaliacao());
+        //holder.titulo.setText(filme.getTitulo());
+        // holder.descricao.setText(filme.getDescricao());
+        // holder.dataLancamento.setText(filme.getDataLancamento());
+        // holder.avaliacao.setRating(filme.getAvaliacao());
 
                 Picasso.get()
                         .load(filme.getCapaPath())
                         .placeholder(R.drawable.capa)
-                        .resize(300,300)
+                        .resize(1000, 1000)
                         .centerInside()
                         .into(holder.poster);
 
                 //new DownloadImageTask(holder.poster).execute(filme.getPosterPath());
 
-                break;
+        // break;
 
-            }
-        }
+        // }
+        //  }
 
         return itemView;
 
