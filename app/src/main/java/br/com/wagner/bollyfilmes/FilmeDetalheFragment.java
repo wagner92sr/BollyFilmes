@@ -36,16 +36,16 @@ public class FilmeDetalheFragment extends Fragment {
             return view;
 
         TextView titulo = view.findViewById(R.id.item_titulo);
-        //titulo.setText(itemFilme.getTitulo());
+        titulo.setText(itemFilme.getTitulo());
 
         TextView data = view.findViewById(R.id.item_data);
-        // data.setText(itemFilme.getDataLancamento());
+        data.setText(itemFilme.getDataLancamento());
 
         TextView desc = view.findViewById(R.id.item_desc);
-        //desc.setText(itemFilme.getDescricao());
+        desc.setText(itemFilme.getDescricao());
 
         RatingBar avaliacao = view.findViewById(R.id.item_avaliacao);
-        // avaliacao.setRating(itemFilme.getAvaliacao());
+        avaliacao.setRating(itemFilme.getAvaliacao());
 
         if (view.findViewById(R.id.item_poster) != null) {
             ImageView poster = view.findViewById(R.id.item_poster);
@@ -55,7 +55,7 @@ public class FilmeDetalheFragment extends Fragment {
                     .fit()
                     .centerInside()
                     .into(poster);
-            //new DownloadImageTask(poster).execute(itemFilme.getPosterPath());
+
         }
 
         return view;
